@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:layout_height="90dp">
+
+        <NumberPicker
+            android:id="@+id/npHourPicker"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tvDevider"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:text=":"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="30sp"/>
+
+        <NumberPicker
+            android:id="@+id/npMinutePicker"
+            android:layout_width="80dp"
+            android:layout_height="match_parent"/>
+
+        <EditText
+            android:id="@+id/etTaskName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="20dp"
+            android:backgroundTint="@color/white"
+            android:hint="Task"/>
+
+        </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/black"/>
+</LinearLayout>
+
