@@ -1,7 +1,10 @@
 package com.wintercore.fastasks;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -41,8 +44,8 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
         return taskModels.size();
     }
 
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
 
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
         NumberPicker npHours;
         NumberPicker npMinutes;
         EditText etTaskName;
@@ -54,22 +57,22 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
             npMinutes = itemView.findViewById(R.id.npMinutePicker);
             etTaskName = itemView.findViewById(R.id.etTaskName);
 
+            npHours.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+            npHours.setWrapSelectorWheel(false);
             npHours.setMaxValue(23);
             npHours.setMinValue(0);
 
-            // To make incremental values
-            NumberPicker.Formatter formatter = new NumberPicker.Formatter() {
-                @Override
-                public String format(int value) {
-                    int temp = value * 15;
-                    return "" + temp;
-                }
-            };
-            npMinutes.setMaxValue(3);
+            int interval = 15;
+            String[] displayedValues = new String[60 / interval];
+            for (int i = 0; i <= 3; i++) {
+                displayedValues[i] = String.valueOf(i * interval);
+            }
+
             npMinutes.setMinValue(0);
-            npMinutes.setFormatter(formatter);
+            npMinutes.setMaxValue(displayedValues.length - 1);
+            npMinutes.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+            npMinutes.setDisplayedValues(displayedValues);
 
         }
     }
-
 }

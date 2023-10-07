@@ -15,23 +15,11 @@ public class TaskModel {
         return hours;
     }
 
-    public void setHours(int hours) {
-        this.hours = hours;
-    }
-
     public int getMinutes() {
         return minutes;
     }
 
-    public void setMinutes(int minutes) {
-        this.minutes = minutes;
-    }
-
     public String getTaskName() {
         return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
     }
 }
