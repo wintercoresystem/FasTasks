@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<TaskModel> taskList;
     private SharedPreferences sharedPreferences;
+    private TaskRecyclerViewAdapter adapter;
 
 
     @Override
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             taskList.add(defaultTask);
         }
 
-        TaskRecyclerViewAdapter adapter = new TaskRecyclerViewAdapter(this, taskList);
+        adapter = new TaskRecyclerViewAdapter(this, taskList);
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -1,6 +1,9 @@
 package com.wintercore.fastasks;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -33,10 +36,43 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        // Update values
+        holder.npMinutes.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                taskModels.get(position).minutes = holder.npMinutes.getValue();
+            }
+        });
+
+        holder.npHours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                taskModels.get(position).hours = holder.npHours.getValue();
+            }
+        });
+
+        holder.etTaskName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                taskModels.get(position).taskName = holder.etTaskName.getText().toString();
+            }
+        });
+
         holder.etTaskName.setText(taskModels.get(position).getTaskName());
         holder.npMinutes.setValue(taskModels.get(position).getMinutes());
         holder.npHours.setValue(taskModels.get(position).getHours());
+
     }
 
     @Override
@@ -45,7 +81,7 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     }
 
 
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+    public class TaskViewHolder extends RecyclerView.ViewHolder {
         NumberPicker npHours;
         NumberPicker npMinutes;
         EditText etTaskName;
@@ -72,6 +108,8 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
             npMinutes.setMaxValue(displayedValues.length - 1);
             npMinutes.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             npMinutes.setDisplayedValues(displayedValues);
+
+
 
         }
     }
