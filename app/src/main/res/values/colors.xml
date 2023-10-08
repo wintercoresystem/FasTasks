@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="whitest">#FFFFFFFF</color>
     <color name="light_blue_50">#FFE1F5FE</color>
     <color name="light_blue_200">#FF81D4FA</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
+
+    <color name="darkest_blue">#001224</color>
+    <color name="dark_blue">#023D84</color>
+    <color name="yellow">#F4BE18</color>
+    <color name="orange">#EF7F19</color>
+    <color name="dim_orange">#B96314</color>
+    <color name="white">#E5E5E5</color>
+    <color name="grey">#BBBEC2</color>
 </resources>

@@ -21,7 +21,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center|center"
+        android:textAllCaps="false"
         android:layout_margin="15dp"
+        android:padding="10dp"
+        app:backgroundTint="@color/orange"
+        android:textColor="@color/white"
         android:text="Add new task"/>
 
 
