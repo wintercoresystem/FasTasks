@@ -99,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TaskModel emptyTask = new TaskModel(6, 0, "");
-                taskList.add(emptyTask);
                 adapter.notifyItemInserted(adapter.getItemCount());
+                taskList.add(emptyTask);
             }
         });
 
@@ -114,8 +114,9 @@ public class MainActivity extends AppCompatActivity {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 int position = viewHolder.getAdapterPosition();
                 if (direction == ItemTouchHelper.LEFT) {
-                    taskList.remove(position);
                     adapter.notifyItemRemoved(position);
+                    adapter.notifyItemRangeChanged(position, adapter.getItemCount());
+                    taskList.remove(position);
                 }
             }
         };

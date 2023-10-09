@@ -32,23 +32,32 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     public TaskRecyclerViewAdapter.TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.task_line, parent, false);
+//        RecyclerView.ViewHolder = new RecyclerView.ViewHolder(view);
         return new TaskRecyclerViewAdapter.TaskViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
+        holder.etTaskName.setText(taskModels.get(position).getTaskName());
+        holder.npMinutes.setValue(taskModels.get(position).getMinutes());
+        holder.npHours.setValue(taskModels.get(position).getHours());
+
+//                taskModels.get(position).setMinutes(holder.npMinutes.getValue());
+
         // Update values
         holder.npMinutes.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                taskModels.get(position).minutes = holder.npMinutes.getValue();
+                taskModels.get(position).setMinutes(holder.npMinutes.getValue());
             }
         });
 
         holder.npHours.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-                taskModels.get(position).hours = holder.npHours.getValue();
+                taskModels.get(position).setHours(holder.npHours.getValue());
             }
         });
 
@@ -65,14 +74,9 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
 
             @Override
             public void afterTextChanged(Editable editable) {
-                taskModels.get(position).taskName = holder.etTaskName.getText().toString();
+                taskModels.get(position).setTaskName(holder.etTaskName.getText().toString());
             }
         });
-
-        holder.etTaskName.setText(taskModels.get(position).getTaskName());
-        holder.npMinutes.setValue(taskModels.get(position).getMinutes());
-        holder.npHours.setValue(taskModels.get(position).getHours());
-
     }
 
     @Override
@@ -108,9 +112,6 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
             npMinutes.setMaxValue(displayedValues.length - 1);
             npMinutes.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
             npMinutes.setDisplayedValues(displayedValues);
-
-
-
         }
     }
 }
