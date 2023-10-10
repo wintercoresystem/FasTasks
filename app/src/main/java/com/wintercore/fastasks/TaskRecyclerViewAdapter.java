@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,15 +26,18 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     @Override
     public TaskRecyclerViewAdapter.TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.task_line, parent, false);
+        View view = inflater.inflate(R.layout.task_row, parent, false);
         return new TaskRecyclerViewAdapter.TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, int position) {
-        holder.etTaskName.setText(taskModels.get(position).getTaskName());
-        holder.npMinutes.setValue(taskModels.get(position).getMinutes());
-        holder.npHours.setValue(taskModels.get(position).getHours());
+
+        // To combine hours and minutes
+        String time = taskModels.get(position).getHours() + ":" + taskModels.get(position).getMinutes();
+
+        holder.tvTaskName.setText(taskModels.get(position).getTaskName());
+        holder.tvTime.setText(time);
     }
 
     @Override
@@ -43,31 +47,16 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
 
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
 
-        NumberPicker npHours;
-        NumberPicker npMinutes;
-        EditText etTaskName;
+        TextView tvTime;
+        TextView tvTaskName;
+        TextView tvEdit;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            npHours = itemView.findViewById(R.id.npHourPicker);
-            npMinutes = itemView.findViewById(R.id.npMinutePicker);
-            etTaskName = itemView.findViewById(R.id.etTaskName);
-
-            npHours.setMaxValue(23);
-            npHours.setMinValue(0);
-
-            // To make incremental values
-            NumberPicker.Formatter formatter = new NumberPicker.Formatter() {
-                @Override
-                public String format(int value) {
-                    int temp = value * 15;
-                    return "" + temp;
-                }
-            };
-            npMinutes.setMaxValue(3);
-            npMinutes.setMinValue(0);
-            npMinutes.setFormatter(formatter);
+            tvTime = itemView.findViewById(R.id.tvTime);
+            tvTaskName = itemView.findViewById(R.id.tvTaskName);
+            tvEdit = itemView.findViewById(R.id.tvEdit);
 
         }
     }
