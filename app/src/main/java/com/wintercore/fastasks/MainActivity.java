@@ -98,7 +98,14 @@ public class MainActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TaskModel emptyTask = new TaskModel(6, 0, "");
+                int dynamicHours = 6;
+                if (taskList.size() >= 1) {
+                    int lastHours = taskList.get(taskList.size() - 1).getHours();
+                    if (lastHours != 23) {
+                        dynamicHours = lastHours + 1;
+                    }
+                }
+                TaskModel emptyTask = new TaskModel(dynamicHours, 0, "");
                 adapter.notifyItemInserted(adapter.getItemCount());
                 taskList.add(emptyTask);
             }

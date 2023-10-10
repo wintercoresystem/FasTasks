@@ -40,6 +40,7 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
+        System.out.println(taskModels);
         holder.etTaskName.setText(taskModels.get(position).getTaskName());
         holder.npMinutes.setValue(taskModels.get(position).getMinutes());
         holder.npHours.setValue(taskModels.get(position).getHours());
