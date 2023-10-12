@@ -34,10 +34,15 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
     public void onBindViewHolder(@NonNull TaskRecyclerViewAdapter.TaskViewHolder holder, int position) {
 
         // To combine hours and minutes
-        String time = taskModels.get(position).getHours() + ":" + taskModels.get(position).getMinutes();
+        String minutes = String.valueOf(taskModels.get(position).getMinutes() * 15);
+        if (minutes.equals("0")) {
+            minutes = "00";
+        }
+        String time = taskModels.get(position).getHours() + ":" + minutes;
 
         holder.tvTaskName.setText(taskModels.get(position).getTaskName());
         holder.tvTime.setText(time);
+        holder.tvEdit.setTag(position);
     }
 
     @Override
@@ -58,6 +63,16 @@ public class TaskRecyclerViewAdapter extends RecyclerView.Adapter<TaskRecyclerVi
             tvTaskName = itemView.findViewById(R.id.tvTaskName);
             tvEdit = itemView.findViewById(R.id.tvEdit);
 
+            tvEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+
+                    System.out.println("hi "+position);
+
+
+                }
+            });
         }
     }
 
