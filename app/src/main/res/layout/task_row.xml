@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="10:00"
+        android:textSize="20sp"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,16 +28,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvEdit"
         app:layout_constraintStart_toEndOf="@id/tvTime"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="?android:attr/textColorSecondary"/>
 
     <TextView
         android:id="@+id/tvEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="E"
         android:paddingHorizontal="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:drawableStartCompat="@drawable/baseline_edit_24"
+        android:drawableTint="?android:attr/textColorPrimary"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

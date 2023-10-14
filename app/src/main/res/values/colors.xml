@@ -6,4 +6,10 @@
     <color name="light_blue_200">#FF81D4FA</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
+
+    <color name="edit_yellow">#F4BE18</color>
+    <color name="delete_red">#F41818</color>
+
+    <color name="primary">#EF7F19</color>
+    <color name="accent">#F4BE18</color>
 </resources>

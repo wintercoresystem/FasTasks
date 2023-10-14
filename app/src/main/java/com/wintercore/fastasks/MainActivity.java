@@ -2,6 +2,7 @@ package com.wintercore.fastasks;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.R.layout;
 import android.text.Layout;
@@ -33,6 +35,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
 
 public class MainActivity extends AppCompatActivity {
     public TaskRecyclerViewAdapter adapter;
@@ -94,7 +98,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+        @Override
+        public void onChildDraw (Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,float dX, float dY,int actionState, boolean isCurrentlyActive){
+
+            new RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.delete_red))
+                    .addSwipeLeftActionIcon(R.drawable.baseline_delete_24)
+                    .addSwipeRightBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.edit_yellow))
+                    .addSwipeRightActionIcon(R.drawable.baseline_edit_24)
+                    .create()
+                    .decorate();
+
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
     };
+
 
     @Override
     protected void onStop() {
